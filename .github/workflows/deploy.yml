@@ -1,0 +1,34 @@
+# name: Deploy to VDS
+
+# on:
+#   push:
+#     branches:
+#       - main
+
+# jobs:
+#   deploy:
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v4
+#       - name: copy file via ssh password
+#         uses: appleboy/scp-action@v0.1.7
+#         with:
+#           host: 68b2b3e8d5c2.vps.myjino.ru
+#           username: nik
+#           password: ${secret.PASSWORD}
+#           port: 49205
+#           source: "./deploy.sh,./package.json,./package-lock.json,./src"
+#           target: /home/nik/project
+#       - name: executing remote ssh commands using password
+#         uses: appleboy/ssh-action@v1.0.3
+#         with:
+#           host: 68b2b3e8d5c2.vps.myjino.ru
+#           username: nik
+#           password: ${secret.PASSWORD}
+#           port: 49205
+#           script: |
+#             export NVM_DIR=~/.nvm
+#             source ~/.nvm/nvm.sh
+#             npm i
+#             pm2 restart my-server
