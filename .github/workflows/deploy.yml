@@ -16,7 +16,7 @@ jobs:
         with:
           host: 68b2b3e8d5c2.vps.myjino.ru
           username: nik
-          password: ${secret.SSH_PASSWORD}
+          password: ${{ secrets.SSH_PASSWORD }}
           port: 49205
           source: "./deploy.sh,./package.json,./package-lock.json,./src"
           target: /home/nik/project
@@ -25,10 +25,11 @@ jobs:
         with:
           host: 68b2b3e8d5c2.vps.myjino.ru
           username: nik
-          password: ${secret.SSH_PASSWORD}
+          password: ${{ secrets.SSH_PASSWORD }}
           port: 49205
           script: |
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
+            cd /home/nik/project
             npm i
             pm2 restart my-server
