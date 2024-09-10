@@ -7,11 +7,8 @@ let server = null;
 app.get('/hello/:name', (req, res) => {
   const { name } = req.params;
 
-
-  console.log('name', name);
-
   res.json({
-    msg: `Hello my ${name} from express version 4.18.2`
+    msg: `Hello my ${name} from express version 4.x.x`
   });
 });
 
