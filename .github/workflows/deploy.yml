@@ -5,6 +5,8 @@ on:
     branches:
       - main
 
+  workflow_dispatch:
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -14,22 +16,22 @@ jobs:
       - name: copy file via ssh password
         uses: appleboy/scp-action@v0.1.7
         with:
-          host: 68b2b3e8d5c2.vps.myjino.ru
-          username: nik
+          host: 3d598a13308b.vps.myjino.ru
+          username: otus
           password: ${{ secrets.SSH_PASSWORD }}
           port: 49205
           source: "./deploy.sh,./package.json,./package-lock.json,./src"
-          target: /home/nik/project
+          target: /home/otus/project
       - name: executing remote ssh commands using password
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: 68b2b3e8d5c2.vps.myjino.ru
-          username: nik
+          host: 3d598a13308b.vps.myjino.ru
+          username: otus
           password: ${{ secrets.SSH_PASSWORD }}
           port: 49205
           script: |
             export NVM_DIR=~/.nvm
             source ~/.nvm/nvm.sh
-            cd /home/nik/project
+            cd /home/otus/project
             npm i
-            pm2 restart my-server
+            pm2 restart ./src/index.js

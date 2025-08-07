@@ -16,4 +16,4 @@ COPY babel.config.json babel.config.json
 COPY src ./src
 
 # Команда которая будет выполнятся при запуске контейнера
-CMD [ "npm", "test" ]
+CMD [ "npm", "start" ]
